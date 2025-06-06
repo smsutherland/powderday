@@ -1,0 +1,6 @@
+[submodule "vendor/python-fsps"]
+	path = vendor/python-fsps
+	url = git@github.com:dfm/python-fsps.git
+[submodule "vendor/hyperion"]
+	path = vendor/hyperion
+	url = https://github.com/hyperion-rt/hyperion.git
