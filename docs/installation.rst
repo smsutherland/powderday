@@ -590,10 +590,13 @@ Then, installation of `powderday <https://github.com/dnarayanan/powderday.git>`_
 
   >git clone https://github.com/dnarayanan/powderday.git
   >cd powderday
-  >python setup.py install --fsps --hyperion
+  >make # This installs hyperion and fsps
+  >python setup.py install
 
 To specify the compilers used to build hyperion and fsps, you can use the ``CC``, ``F90`` and ``F77`` environment variables, for example::
 
-  >CC=gcc F90=gfortran F77=gfortran python setup.py install --fsps --hyperion
+  >CC=gcc F90=gfortran F77=gfortran make
 
-If, for example, you only want to use the vendored version of python-fsps and install hyperion yourself, then you would only pass ``--fsps``.
+If, for example, you only want to use the vendored version of python-fsps and install hyperion yourself, then you would only run::
+
+  >make fsps
