@@ -567,3 +567,33 @@ then fix import six line in the equivalent of all of these::
   >vi /home/paul.torrey/.conda/envs/pd_gcc/lib/python3.8/site-packages/hyperion/model/sed.py
   >vi /home/paul.torrey/.conda/envs/pd_gcc/lib/python3.8/site-packages/hyperion/model/image.py
   >vi /home/paul.torrey/.conda/envs/pd_gcc/lib/python3.8/site-packages/hyperion/grid/yt3_wrappers.py
+
+Using vendored dependencies
+---------------------------
+
+Many of `powderday <https://github.com/dnarayanan/powderday.git>`_'s dependencies are now vendored, allowing them to be more automatically installed.
+This feature is still experimental, so please report any issues you encounter.
+
+Vendoring dependencies has been tested with python 3.10.4.
+We very strongly recommend that the user set up a new python environment for the
+`powderday <https://github.com/dnarayanan/powderday.git>`_ installation to avoid software conflicts.
+If you have a ``conda`` installation of python, this would look like::
+
+  >conda create -y --name pd_environment python=3.10.4
+  >conda activate pd_environment
+
+Installation requires numpy, matplotlib, and an older version of setuptools, so install those::
+
+  >pip install numpy==1.26.4 'setuptools<65' matplotlib==3.10.3
+
+Then, installation of `powderday <https://github.com/dnarayanan/powderday.git>`_ and its dependencies is as simple as::
+
+  >git clone https://github.com/dnarayanan/powderday.git
+  >cd powderday
+  >python setup.py install --fsps --hyperion
+
+To specify the compilers used to build hyperion and fsps, you can use the ``CC``, ``F90`` and ``F77`` environment variables, for example::
+
+  >CC=gcc F90=gfortran F77=gfortran python setup.py install --fsps --hyperion
+
+If, for example, you only want to use the vendored version of python-fsps and install hyperion yourself, then you would only pass ``--fsps``.
