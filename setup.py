@@ -16,7 +16,7 @@ setup(
     ],
     install_requires=[
         'scipy==1.2; python_version=="2.7"',
-        'scipy; python_version>="3.5"',
+        'scipy==1.7.3; python_version>="3.5"',
         'astropy==2.0; python_version=="2.7"',
         'astropy; python_version>="3.5"',
         'h5py>=2.9',
