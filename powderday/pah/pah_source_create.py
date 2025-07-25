@@ -234,6 +234,9 @@ def pah_source_add(ds,reg,m,boost):
         print("[pah/pah_source_create:] building the reference PAH list for neutrals and ions")
 
         for draine_directory_idx,draine_directory in enumerate(draine_directories):
+
+            neutral_logU_iout_files = np.sort(glob.glob(draine_directory+'/*iout_graD16*nb*_*.*0'))
+            ion_logU_iout_files = np.sort(glob.glob(draine_directory+'/*iout_graD16*ib*_*.*0'))
         
             for logU_idx in range(len(basis_logU_values)):
                 neutral_file = neutral_logU_iout_files[logU_idx]
