@@ -44,7 +44,7 @@ class Nenkova2008:
         l_band_vec = np.log10(l_band_vec_torus) + np.interp(
             nu_vec[:-4], agn_nu[:-4], agn_l_band_vec[:-4])
         
-        # Nenkova SEDs need to be rescaled to represent to input luminosity
+        # Nenkova SEDs need to be rescaled to represent the input luminosity
         lin_nu, lin_l = 10**nu_vec[:-4], 10**l_band_vec
         lin_lnu = lin_l/lin_nu
         L_int = np.trapz(np.flip(lin_lnu), np.flip(lin_nu))
