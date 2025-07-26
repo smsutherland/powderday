@@ -182,7 +182,6 @@ def arepo_field_add(fname, bounding_box=None, ds=None):
         age = data.ds.arr(age, 'Gyr')
         return age
         
-    '''
     def _bhluminosity(field, data):
         ad = data.ds.all_data()
         mdot = ad[("PartType5", "BH_Mdot")]
@@ -190,9 +189,13 @@ def arepo_field_add(fname, bounding_box=None, ds=None):
 
         mdot = data.ds.arr(mdot, "code_mass/code_time")
 
-
         c = yt.utilities.physical_constants.speed_of_light_cgs
-        bhluminosity = (cfg.par.BH_eta * mdot * c**2.).in_units("erg/s")
+        bhluminosity = (cfg.par.BH_eta * cfg.par.BH_epsilon * mdot * c**2.).in_units("erg/s")
+        
+        print('\n--------------')
+        print('[arepo2pd: ] Black Hole Luminosity: ', bhluminosity)
+        print('--------------\n')
+        
         if cfg.par.BH_var:
             return bhluminosity * cfg.par.bhlfrac
         else:
@@ -202,7 +205,7 @@ def arepo_field_add(fname, bounding_box=None, ds=None):
         return data["PartType5", "Coordinates"]
 
     def _bhsed_nu(field, data):
-        bhluminosity = data["bhluminosity"]
+        bhluminosity = data["bh", "luminosity"]
         log_lum_lsun = np.log10(bhluminosity[0].in_units("Lsun"))
         nu, bhlum = agn_spectrum(log_lum_lsun)
         # the last 4 numbers aren't part of the SED
@@ -213,7 +216,7 @@ def arepo_field_add(fname, bounding_box=None, ds=None):
         return nu
 
     def _bhsed_sed(field, data):
-        bhluminosity = data["bhluminosity"]
+        bhluminosity = data["bh", "luminosity"]
         nholes = len(bhluminosity)
 
         # get len of nu just for the 0th hole so we know how long the vector is
@@ -237,7 +240,7 @@ def arepo_field_add(fname, bounding_box=None, ds=None):
             bh_sed[i, :] = l_band_vec
         bh_sed = yt.YTArray(bh_sed, "erg/s")
         return bh_sed
-    '''
+    
 
     # load the ds (but only if this is our first passthrough and we pass in fname)
     if fname != None:

@@ -191,6 +191,7 @@ N_STELLAR_AGE_BINS = 100
 
 BH_SED = True
 BH_eta = 0.1 #bhluminosity = BH_eta * mdot * c**2.
+BH_epsilon = 0.1 # Accretion disk radiative efficiency. Typically 0.1
 BH_model = "Nenkova"
 BH_modelfile = "/home/desika.narayanan/pd_git/agn_models/clumpy_models_201410_tvavg.hdf5"
 # The Nenkova BH_modelfile can be downloaded here:

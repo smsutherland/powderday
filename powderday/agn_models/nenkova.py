@@ -43,6 +43,16 @@ class Nenkova2008:
         agn_nu, agn_l_band_vec = underlying_agn_spectrum(log_L_bol)
         l_band_vec = np.log10(l_band_vec_torus) + np.interp(
             nu_vec[:-4], agn_nu[:-4], agn_l_band_vec[:-4])
+        
+        # Nenkova SEDs need to be rescaled to represent to input luminosity
+        lin_nu, lin_l = 10**nu_vec[:-4], 10**l_band_vec
+        lin_lnu = lin_l/lin_nu
+        L_int = np.trapz(np.flip(lin_lnu), np.flip(lin_nu))
+        Lsolar_to_ergps = 3.828e+33
+        scale_factor = ((10**log_L_bol)*Lsolar_to_ergps)/L_int
+        scaled_lin_l = lin_l*scale_factor
+        l_band_vec = np.log10(scaled_lin_l)
+        
         l_band_vec = np.concatenate((l_band_vec, [0, 0, 0, 0]))
 
         return nu_vec, l_band_vec
