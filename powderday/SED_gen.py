@@ -602,7 +602,7 @@ def get_agn_seds(agn_ids, reg):
     fnu_in = []
     metals_avg = []
     for agn_id in agn_ids:
-        fnu_in.append(reg["bh","sed"][agn_id,:].in_units("Lsun").value/reg["bhnu"].in_units("Hz").value)
+        fnu_in.append(reg["bh","sed"][agn_id,:].in_units("Lsun").value/reg["bh","nu"].in_units("Hz").value)
         nu.append(reg["bh","nu"].in_units("Hz").value)
         all_gas_coordinates = reg["gas","coordinates"].in_units('kpc').value
         agn_coordinates = reg["bh","coordinates"][agn_id].in_units('kpc').value
@@ -620,12 +620,6 @@ def get_agn_seds(agn_ids, reg):
 
 def agn_sed(agn_id, nu, fnu, metals_avg):
     agn_id = int(agn_id)
-
-    # Hopkins model returns the nu and fnu in reversed order. 
-    # Thus, we have to reverse it back to make it compatible.
-    if cfg.par.BH_model != 'Nenkova': 
-        nu = nu[::-1]
-        fnu = fnu[::-1]
 
     if cfg.par.add_neb_emission and cfg.par.add_AGN_neb:
         

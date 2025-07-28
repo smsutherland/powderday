@@ -517,17 +517,17 @@ def BH_source_add(m,reg,df_nu,boost):
         nu = reg["bh","nu"].value
 
         for j in range(len(agn_ids)):
-                i = agn_ids[j]
-                fnu = fnu_arr[j,:]
-                nu, fnu = wavelength_compress(nu,fnu,df_nu)
+            i = agn_ids[j]
+            fnu = fnu_arr[j,:]
+            nu, fnu = wavelength_compress(nu,fnu,df_nu)
 
-                master_bh_fnu[i,:] = fnu
+            master_bh_fnu[i,:] = fnu
 
-                print('Boosting BH Coordinates and adding BH #%d to the source list now'%i)
-                #the tolist gets rid of the array brackets
-                bh = m.add_point_source(luminosity = reg["bh","luminosity"][i].value.tolist(), 
-                                        spectrum = (nu,fnu),
-                                        position = (reg["bh","coordinates"][i,:].in_units('cm').value-boost).tolist())
+            print('Boosting BH Coordinates and adding BH #%d to the source list now'%i)
+            # the tolist gets rid of the array brackets
+            bh = m.add_point_source(luminosity = reg["bh","luminosity"][i].value.tolist(),
+                                    spectrum = (nu,fnu),
+                                    position = (reg["bh","coordinates"][i,:].in_units('cm').value-boost).tolist())
 
         dump_AGN_SEDs(nu,master_bh_fnu,reg["bh","luminosity"].value)
 
