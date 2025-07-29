@@ -3,7 +3,7 @@
 	url = git@github.com:dfm/python-fsps.git
 [submodule "vendor/hyperion"]
 	path = vendor/hyperion
-	url = git@github.com:dnarayanan/hyperion.git
+	url = git@github.com:smsutherland/hyperion.git
 [submodule "vendor/hyperion-dust"]
 	path = vendor/hyperion-dust
 	url = https://github.com/hyperion-rt/hyperion-dust.git
