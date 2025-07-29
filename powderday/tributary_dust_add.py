@@ -36,7 +36,7 @@ def active_dust_add(ds,m,grid_of_sizes,nsizes,dustdens,specific_energy,refined=[
 
 
         #now load the mapping between grain bin and filename for the lookup table
-        data = np.load(cfg.par.pd_source_dir+'/powderday/active_dust/dust_files/binned_dust_sizes.npz')
+        data = np.load(cfg.model.PD_output_dir+'/dust_files/binned_dust_sizes.npz')
         grain_size_left_edge_array = data['grain_size_left_edge_array']
         grain_size_right_edge_array  = data['grain_size_right_edge_array']
         dust_filenames = data['outfile_filenames']
