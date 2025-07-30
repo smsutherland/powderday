@@ -4,8 +4,8 @@ all: fsps hyperion hyperion-dust
 
 fsps:
 	git submodule update --recursive --init -- vendor/python-fsps
-	cd vendor/python-fsps/src/fsps/libfsps/src/ && make clean
-	cd vendor/python-fsps/src/fsps/libfsps/src/ && make
+	$(MAKE) -C vendor/python-fsps/src/fsps/libfsps/src clean
+	$(MAKE) -C vendor/python-fsps/src/fsps/libfsps/src
 	cd vendor/python-fsps/ && python setup.py install
 
 
@@ -13,8 +13,8 @@ hyperion:
 	git submodule update --recursive --init -- vendor/hyperion
 	cd vendor/hyperion/ && pip install .
 	cd vendor/hyperion/ && ./configure --prefix=${HOME}/local
-	cd vendor/hyperion/ && make
-	cd vendor/hyperion/ && make install
+	$(MAKE) -C vendor/hyperion
+	$(MAKE) -C vendor/hyperion install
 
 hyperion-dust: hyperion
 	git submodule update --recursive --init -- vendor/hyperion-dust
