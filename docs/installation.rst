@@ -582,16 +582,12 @@ If you have a ``conda`` installation of python, this would look like::
   >conda create -y --name pd_environment python=3.10.4
   >conda activate pd_environment
 
-Installation requires numpy, matplotlib, and an older version of setuptools, so install those::
-
-  >pip install numpy==1.26.4 'setuptools<65' matplotlib==3.10.3
-
 Then, installation of `powderday <https://github.com/dnarayanan/powderday.git>`_ and its dependencies is as simple as::
 
   >git clone https://github.com/dnarayanan/powderday.git
   >cd powderday
   >make # This installs hyperion and fsps
-  >python setup.py install
+  >pip install .
 
 To specify the compilers used to build hyperion and fsps, you can use the ``CC``, ``F90`` and ``F77`` environment variables, for example::
 
