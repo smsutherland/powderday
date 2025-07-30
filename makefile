@@ -6,12 +6,12 @@ fsps:
 	git submodule update --recursive --init -- vendor/python-fsps
 	$(MAKE) -C vendor/python-fsps/src/fsps/libfsps/src clean
 	$(MAKE) -C vendor/python-fsps/src/fsps/libfsps/src
-	cd vendor/python-fsps/ && python setup.py install
+	pip install vendor/python-fsps
 
 
 hyperion:
 	git submodule update --recursive --init -- vendor/hyperion
-	cd vendor/hyperion/ && pip install .
+	pip install vendor/hyperion
 	cd vendor/hyperion/ && ./configure --prefix=${HOME}/local
 	$(MAKE) -C vendor/hyperion
 	$(MAKE) -C vendor/hyperion install
